@@ -3,123 +3,1059 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vanessa | Perfil Personal</title>
+  <title>Ciencia de Datos | Tecnología y Analítica</title>
   <style>
+    :root {
+      --bg-dark: #06131f;
+      --bg-mid: #0c1f2d;
+      --bg-card: #11263a;
+      --bg-soft: #0f2031;
+      --primary: #4cc9f0;
+      --secondary: #7b2ff7;
+      --accent: #00f5d4;
+      --text: #e6f3ff;
+      --muted: #a8bfd1;
+      --line: rgba(255, 255, 255, 0.08);
+      --glass: rgba(17, 38, 58, 0.7);
+      --shadow: 0 18px 45px rgba(9, 18, 29, 0.45);
+    }
+
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fdf2f8 0%, #e0f2fe 30%, #ede9fe 100%);
-      color: #1f2937;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(76, 201, 240, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(123, 47, 247, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg-dark), var(--bg-mid) 55%, #091923);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(6, 19, 31, 0.65);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
       display: flex;
-      justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 30px;
+      justify-content: space-between;
+      min-height: 74px;
+      padding: 14px 0;
     }
 
-    .perfil {
-      width: 100%;
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 30px;
-      box-shadow: 0 25px 50px rgba(76, 29, 149, 0.18);
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-    }
-
-    .encabezado {
-      background: linear-gradient(135deg, #7c3aed, #ec4899, #3b82f6);
-      color: white;
-      padding: 40px 30px 20px;
-      text-align: center;
-    }
-
-    .foto {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin: 0 auto 20px;
-      background: linear-gradient(135deg, #fef3c7, #f9a8d4);
-      border: 5px solid rgba(255, 255, 255, 0.7);
+    .brand {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 3rem;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
       font-weight: bold;
-      color: #4c1d95;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      color: white;
+      box-shadow: 0 10px 24px rgba(76, 201, 240, 0.35);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    .menu a {
+      transition: color 0.25s ease;
+    }
+
+    .menu a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 14px 28px rgba(76, 201, 240, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 64px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(76, 201, 240, 0.1);
+      border: 1px solid rgba(76, 201, 240, 0.25);
+      color: var(--primary);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     h1 {
-      margin: 0;
-      font-size: 2.6em;
-      letter-spacing: 1px;
+      font-size: clamp(2.7rem, 4vw, 5rem);
+      line-height: 1.08;
+      margin: 0 0 18px;
+      letter-spacing: -0.05em;
     }
 
-    .cargo {
-      margin-top: 10px;
-      font-size: 1.1em;
-      opacity: 0.95;
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), #8be9fd, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .contenido {
-      padding: 35px 30px 40px;
+    .lead {
+      max-width: 620px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 32px;
     }
 
-    .descripcion {
-      font-size: 1.08em;
-      line-height: 1.9;
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 30px;
-      color: #374151;
-    }
-
-    .etiquetas {
+    .cta-row {
       display: flex;
-      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 15px;
+      margin-bottom: 28px;
     }
 
-    .etiqueta {
-      background: linear-gradient(135deg, #dbeafe, #fbcfe8);
-      color: #312e81;
-      padding: 12px 18px;
+    .stats {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      min-width: 120px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .visual-panel {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .dashboard {
+      position: relative;
+      width: min(100%, 480px);
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(11, 25, 38, 0.9);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2ae6a8;
+      box-shadow: 0 0 15px rgba(42, 230, 168, 0.8);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .mini-card strong {
+      font-size: 1.35rem;
+    }
+
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      height: 170px;
+      padding: 18px 10px 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(76, 201, 240, 0.05), rgba(123, 47, 247, 0.08));
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      box-shadow: 0 10px 20px rgba(76, 201, 240, 0.22);
+      animation: rise 0.8s ease both;
+    }
+
+    .bar:nth-child(1) { height: 38%; animation-delay: 0.1s; }
+    .bar:nth-child(2) { height: 48%; animation-delay: 0.2s; }
+    .bar:nth-child(3) { height: 58%; animation-delay: 0.3s; }
+    .bar:nth-child(4) { height: 70%; animation-delay: 0.4s; }
+    .bar:nth-child(5) { height: 82%; animation-delay: 0.5s; }
+    .bar:nth-child(6) { height: 96%; animation-delay: 0.6s; }
+
+    .bottom-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px 14px;
+      width: 58%;
+    }
+
+    .donut {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0 68%, rgba(255,255,255,0.1) 68% 100%);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: rgba(6, 19, 31, 0.9);
+    }
+
+    .donut-text {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .donut-text strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--text);
+      letter-spacing: normal;
+      text-transform: none;
+      margin-top: 4px;
+    }
+
+    .signal {
+      flex: 1;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .signal span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    section {
+      padding: 28px 0 10px;
+    }
+
+    .section-heading {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 2vw, 2.8rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(76, 201, 240, 0.38);
+    }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.18), rgba(123, 47, 247, 0.18));
+      border: 1px solid rgba(76, 201, 240, 0.18);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .base-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 18px;
+    }
+
+    .feature-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      min-height: 240px;
+    }
+
+    .feature-box h3 {
+      margin: 0 0 14px;
+      font-size: 1.5rem;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .feature-list li + li {
+      margin-top: 10px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .step {
+      position: relative;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px 16px 18px;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      margin-bottom: 14px;
+      box-shadow: 0 12px 20px rgba(76, 201, 240, 0.2);
+    }
+
+    .step h4 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .tool {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-6px);
+      border-color: rgba(123, 47, 247, 0.4);
+    }
+
+    .tool-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.14), rgba(123, 47, 247, 0.18));
+      border: 1px solid var(--line);
+    }
+
+    .tool h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .tool p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .app-card {
+      background: linear-gradient(135deg, rgba(17, 38, 58, 0.9), rgba(9, 25, 35, 0.9));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .app-visual {
+      height: 170px;
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.16), rgba(123, 47, 247, 0.18));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-visual::before,
+    .app-visual::after {
+      content: "";
+      position: absolute;
       border-radius: 999px;
-      font-weight: bold;
-      box-shadow: 0 8px 18px rgba(124, 58, 237, 0.12);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .app-visual::before {
+      width: 200px;
+      height: 200px;
+      right: -40px;
+      top: -50px;
+    }
+
+    .app-visual::after {
+      width: 120px;
+      height: 120px;
+      left: -20px;
+      bottom: -20px;
+    }
+
+    .app-content {
+      padding: 22px;
+    }
+
+    .app-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+    }
+
+    .app-content p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 42px 0 70px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.08), rgba(123, 47, 247, 0.09));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 36px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cta-box h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 2vw, 2.8rem);
+      letter-spacing: -0.04em;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+    footer {
+      padding: 12px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes rise {
+      from { transform: scaleY(0); transform-origin: bottom; opacity: 0.2; }
+      to { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .base-grid,
+      .cards-3,
+      .tools-grid,
+      .apps-grid,
+      .process {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid,
+      .base-grid,
+      .cards-3,
+      .tools-grid,
+      .apps-grid {
+        display: grid;
+      }
+
+      .process {
+        display: grid;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-panel {
+        min-height: auto;
+      }
+
+      .cta-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        padding: 16px 0;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+
+      .cards-3,
+      .base-grid,
+      .tools-grid,
+      .apps-grid,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bottom-row {
+        flex-direction: column;
+      }
+
+      .donut-wrap,
+      .signal {
+        width: 100%;
+      }
+
+      .header-pad {
+        padding-top: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="perfil">
-    <div class="encabezado">
-      <div class="foto">V</div>
-      <h1>Vanessa</h1>
-      <div class="cargo">Estudiante de Ingeniería en Inteligencia Artificial</div>
-    </div>
-
-    <div class="contenido">
-      <p class="descripcion">
-        Soy una estudiante apasionada por la programación, la tecnología y el desarrollo de soluciones
-        innovadoras. Me interesa la inteligencia artificial porque combina creatividad, lógica y el poder
-        de transformar ideas en herramientas útiles para el mundo real.
-      </p>
-
-      <div class="etiquetas">
-        <span class="etiqueta">Programación</span>
-        <span class="etiqueta">Tecnología</span>
-        <span class="etiqueta">Inteligencia Artificial</span>
-        <span class="etiqueta">Aprendizaje</span>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <span>DataInsight</span>
       </div>
+
+      <nav class="menu" aria-label="Menú de navegación">
+        <a href="#inicio">Inicio</a>
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#bases">Bases</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#aplicaciones">Aplicaciones</a>
+      </nav>
     </div>
-  </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Inteligencia analítica</div>
+          <h1>La <span class="gradient-text">Ciencia de Datos</span> transforma información en decisiones inteligentes.</h1>
+          <p class="lead">
+            La ciencia de datos combina estadística, programación, análisis y conocimiento del negocio para descubrir patrones,
+            generar conocimientos y apoyar decisiones más precisas en un mundo impulsado por datos.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#que-es">Conocer más</a>
+            <a class="btn btn-secondary" href="#aplicaciones">Ver aplicaciones</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>5+</strong>
+              <span>Áreas clave</span>
+            </div>
+            <div class="stat">
+              <strong>6</strong>
+              <span>Etapas del proceso</span>
+            </div>
+            <div class="stat">
+              <strong>∞</strong>
+              <span>Aplicaciones</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-panel" aria-label="Visualización de datos">
+          <div class="dashboard">
+            <div class="topline">
+              <span>Analytics</span>
+              <span class="dot"></span>
+            </div>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span>Ventas</span>
+                <strong>+32%</strong>
+              </div>
+              <div class="mini-card">
+                <span>Clientes</span>
+                <strong>18.2k</strong>
+              </div>
+              <div class="mini-card">
+                <span>Riesgo</span>
+                <strong>7.4%</strong>
+              </div>
+            </div>
+
+            <div class="chart" aria-label="Gráfico de barras">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+
+            <div class="bottom-row">
+              <div class="donut-wrap">
+                <div class="donut" aria-label="Gráfico circular"></div>
+                <div class="donut-text">
+                  Precisión
+                  <strong>92%</strong>
+                </div>
+              </div>
+
+              <div class="signal">
+                <span>Trending</span>
+                <strong>+14.8%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <div class="section-heading">
+          <h2>¿Qué es la Ciencia de Datos?</h2>
+          <p>
+            Es el campo que combina estadística, informática, análisis y conocimiento del negocio para extraer información útil a partir de datos.
+            Su objetivo es convertir grandes volúmenes de información en conocimiento accionable.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3>Comprensión</h3>
+            <p>Permite entender patrones, tendencias y comportamiento oculto dentro de los datos.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧠</div>
+            <h3>Predicción</h3>
+            <p>Ayuda a anticipar eventos, comportamientos y resultados futuros mediante modelos analíticos.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">⚙️</div>
+            <h3>Optimización</h3>
+            <p>Facilita mejorar procesos, reducir costos y tomar decisiones estratégicas con evidencia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="bases">
+      <div class="container">
+        <div class="section-heading">
+          <h2>En qué se basa</h2>
+          <p>
+            La ciencia de datos no se limita a mirar números; combina bases matemáticas, análisis técnico y capacidad de interpretación del contexto.
+          </p>
+        </div>
+
+        <div class="base-grid">
+          <div class="feature-box">
+            <h3>Fundamentos principales</h3>
+            <ul class="feature-list">
+              <li>Estadística descriptiva e inferencial para interpretar patrones y variabilidad.</li>
+              <li>Matemáticas y álgebra lineal para modelado, probabilidad y optimización.</li>
+              <li>Programación para automatizar procesos y manipular grandes volúmenes de datos.</li>
+              <li>Visualización para comunicar hallazgos de forma clara y efectiva.</li>
+            </ul>
+          </div>
+
+          <div class="feature-box">
+            <h3>Enfoque interdisciplinario</h3>
+            <ul class="feature-list">
+              <li>Conocimiento del negocio y contexto para definir preguntas relevantes.</li>
+              <li>Machine Learning para construir modelos predictivos y de clasificación.</li>
+              <li>Big Data para manejar datos masivos y distribuidos en distintos formatos.</li>
+              <li>Comunicación y storytelling para convertir análisis en decisiones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Cómo funciona el proceso</h2>
+          <p>
+            El análisis de datos sigue una secuencia lógica que va desde la identificación del problema hasta la acción basada en resultados.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h4>Definición</h4>
+            <p>Se identifica la pregunta o problema que se desea responder.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <h4>Recopilación</h4>
+            <p>Se reúnen datos de distintas fuentes: internas, externas o sensores.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <h4>Preparación</h4>
+            <p>Se limpian, organizan y transforman para eliminar errores y inconsistencias.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <h4>Análisis</h4>
+            <p>Se usan métricas, modelos y técnicas para detectar patrones y relaciones.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">5</div>
+            <h4>Modelado</h4>
+            <p>Se desarrollan modelos predictivos o descriptivos según el objetivo.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">6</div>
+            <h4>Comunicación</h4>
+            <p>Se presentan hallazgos con tablas, visualizaciones y recomendaciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="herramientas">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Herramientas que utiliza</h2>
+          <p>
+            La ciencia de datos emplea un conjunto de tecnologías que permiten manipular, analizar y visualizar la información de manera eficiente.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool">
+            <div class="tool-mark">Py</div>
+            <h4>Python</h4>
+            <p>Lenguaje principal para análisis, ciencia de datos y machine learning.</p>
+          </article>
+
+          <article class="tool">
+            <div class="tool-mark">SQL</div>
+            <h4>SQL</h4>
+            <p>Permite consultar, filtrar y analizar grandes bases de datos.</p>
+          </article>
+
+          <article class="tool">
+            <div class="tool-mark">BI</div>
+            <h4>Power BI</h4>
+            <p>Herramienta para dashboards interactivos y visualización empresarial.</p>
+          </article>
+
+          <article class="tool">
+            <div class="tool-mark">Tab</div>
+            <h4>Tableau</h4>
+            <p>Muy útil para representar datos complejos mediante visualizaciones.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="aplicaciones">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Aplicaciones en la vida real</h2>
+          <p>
+            La ciencia de datos tiene un impacto directo en muchos sectores y disciplinas tecnológicas.
+          </p>
+        </div>
+
+        <div class="apps-grid">
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Salud</h3>
+              <p>Predicción de enfermedades, análisis clínicos y optimización de tratamientos.</p>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Finanzas</h3>
+              <p>Detección de fraudes, riesgo crediticio y análisis de tendencias del mercado.</p>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Marketing</h3>
+              <p>Segmentación de clientes, análisis del comportamiento y campañas personalizadas.</p>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Educación</h3>
+              <p>Analiza desempeño estudiantil y mejora la personalización del aprendizaje.</p>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Transporte</h3>
+              <p>Optimiza rutas, predice demanda y mejora logística y movilidad urbana.</p>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-visual"></div>
+            <div class="app-content">
+              <h3>Industria</h3>
+              <p>Monitoreo de procesos, mantenimiento predictivo y reducción de fallas operativas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Datos con propósito</h2>
+            <p>
+              La ciencia de datos convierte información masiva en conocimiento útil, permitiendo decisiones más inteligentes, rápidas y estratégicas.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#inicio">Volver al inicio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 DataInsight • Ciencia de Datos y Analítica
+  </footer>
 </body>
 </html>
